@@ -6,4 +6,14 @@ edition = "2018"
 
 [dependencies]
 detour = { version = "0.6.0", default-features = false }
+lazy_static = "1.3.0"
+widestring = "0.4.0"
+
+[lib]
+name = "detour_test_lib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "detour_test"
+path = "src/main.rs"
 
