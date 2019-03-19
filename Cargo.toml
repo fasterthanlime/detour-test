@@ -1,0 +1,9 @@
+[package]
+name = "detour-test"
+version = "0.1.0"
+authors = ["amos"]
+edition = "2018"
+
+[dependencies]
+detour = { version = "0.6.0", default-features = false }
+
