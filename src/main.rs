@@ -1,16 +1,25 @@
 #![allow(non_upper_case_globals, non_snake_case)]
 
 #[macro_use]
+extern crate ctor;
+#[macro_use]
 extern crate lazy_static;
+#[macro_use]
+extern crate libc_print;
 extern crate detour;
+
 use detour::RawDetour;
 use std::sync::Mutex;
 use widestring::U16CString;
 
+#[ctor]
+fn ctor() {
+    libc_println!("Hello, this is detour_test_lib initializing");
+    lazy_static::initialize(&MyMessageBoxHook);
+}
+
 fn main() {
     unsafe {
-        lazy_static::initialize(&MyMessageBoxHook);
-
         let text = U16CString::from_str("The original text").unwrap();
         let caption = U16CString::from_str("The original caption").unwrap();
         MessageBoxW(0, text.as_ptr(), caption.as_ptr(), MB_OK);
